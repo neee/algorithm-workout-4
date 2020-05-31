@@ -1,6 +1,5 @@
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -64,6 +63,20 @@ class SortTest {
                 Pair<Integer, int[]> in = in(type, i);
                 int[] out = out(type, i);
                 int[] result = ShellSort.sort(in.getValue());
+                Assertions.assertArrayEquals(out, result);
+            }
+        }
+    }
+
+    @Test
+    public void shellSort10() throws IOException {
+        System.out.println("Shell sort");
+        for (String type : types) {
+            System.out.println("type: " + type);
+            for (int i = 0; i < 8; i++) {
+                Pair<Integer, int[]> in = in(type, i);
+                int[] out = out(type, i);
+                int[] result = ShellSort.sort(in.getValue(), 10);
                 Assertions.assertArrayEquals(out, result);
             }
         }
