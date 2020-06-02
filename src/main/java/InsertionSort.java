@@ -1,9 +1,8 @@
-public class InsertionSort {
+public class InsertionSort implements Sort {
 
-    public static int[] sort(int[] arr) {
-        long start = System.currentTimeMillis();
-        for (int i = 1; i < arr.length ; i++) {
-            for (int j = i; j > 0 ; j--) {
+    public int[] sort(int[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = i; j > 0; j--) {
                 if (arr[j] < arr[j - 1]) {
                     int temp = arr[j];
                     arr[j] = arr[j - 1];
@@ -13,7 +12,6 @@ public class InsertionSort {
                 }
             }
         }
-        System.out.println(String.format("  size: %7s time: %s", arr.length, System.currentTimeMillis() - start));
         return arr;
     }
 }

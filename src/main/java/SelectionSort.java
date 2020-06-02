@@ -1,7 +1,6 @@
-public class SelectionSort {
+public class SelectionSort implements Sort {
 
-    public static int[] sort(int[] arr) {
-        long start = System.currentTimeMillis();
+    public int[] sort(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             int min = i;
             for (int j = i; j < arr.length; j++) {
@@ -15,7 +14,6 @@ public class SelectionSort {
                 arr[min] = temp;
             }
         }
-        System.out.println(String.format("  size: %7s time: %s", arr.length, System.currentTimeMillis() - start));
         return arr;
     }
 }

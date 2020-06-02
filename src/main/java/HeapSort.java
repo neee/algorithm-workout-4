@@ -1,15 +1,8 @@
 import java.util.Arrays;
 
-public class HeapSort {
+public class HeapSort implements Sort {
 
-    public static void main(String[] args) {
-        int[] arr = {3, 2, 4, 5, 6, 1, 2, 9, 1, 0};
-        int[] result = sort(arr);
-        System.out.println(Arrays.toString(result));
-    }
-
-    public static int[] sort(int[] arr) {
-        long start = System.currentTimeMillis();
+    public int[] sort(int[] arr) {
         for (int i = arr.length / 2 - 1; i >= 0; i--) {
             down(i, arr.length, arr);
         }
@@ -17,7 +10,6 @@ public class HeapSort {
             swap(0, i, arr);
             down(0, i, arr);
         }
-        System.out.println(String.format("  size: %7s time: %s", arr.length, System.currentTimeMillis() - start));
         return arr;
     }
 

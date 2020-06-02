@@ -1,7 +1,6 @@
-public class BubbleSort {
+public class BubbleSort implements Sort {
 
-    public static int[] sort(int[] arr) {
-        long start = System.currentTimeMillis();
+    public int[] sort(int[] arr) {
         for (int i = arr.length; i > 0; i--){
             for (int j = 1; j < i; j++) {
                 if (arr[j] < arr[j - 1]) {
@@ -11,7 +10,6 @@ public class BubbleSort {
                 }
             }
         }
-        System.out.println(String.format("  size: %7s time: %s", arr.length, System.currentTimeMillis() - start));
         return arr;
     }
 }

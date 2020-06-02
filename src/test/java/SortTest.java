@@ -10,89 +10,33 @@ import java.util.List;
 
 class SortTest {
 
-    private static final List<String> types = List.of("0.random", "1.digits", "2.sorted", "3.revers");
+    private static final List<String> dataTypes = List.of("0.random", "1.digits", "2.sorted", "3.revers");
+
+    private static final List<Sort> sortTypes = List.of(
+        new BubbleSort(),
+        new HeapSort(),
+        new InsertionSort(),
+        new SelectionSort(),
+        new ShellSort(),
+        new ShellSort10()
+    );
 
     @Test
-    public void bubbleSort() throws IOException {
-        System.out.println("Bubble sort");
-        for (String type : types) {
-            System.out.println("type: " + type);
-            for (int i = 0; i < 7; i++) {
-                Pair<Integer, int[]> in = in(type, i);
-                int[] out = out(type, i);
-                int[] result = BubbleSort.sort(in.getValue());
-                Assertions.assertArrayEquals(out, result);
+    public void testSorts() throws IOException {
+        for (Sort sortType : sortTypes) {
+            System.out.println(sortType.getClass().getName());
+            for (String data : dataTypes) {
+                System.out.println("data: " + data);
+                for (int i = 0; i < 7; i++) {
+                    long start = System.currentTimeMillis();
+                    Pair<Integer, int[]> in = in(data, i);
+                    int[] out = out(data, i);
+                    int[] result = sortType.sort(in.getValue());
+                    Assertions.assertArrayEquals(out, result);
+                    System.out.println(String.format("  size: %7s time: %s", in.getValue().length, System.currentTimeMillis() - start));
+                }
             }
-        }
-    }
-
-    @Test
-    public void selectionSort() throws IOException {
-        System.out.println("Selection sort");
-        for (String type : types) {
-            System.out.println("type: " + type);
-            for (int i = 0; i < 7; i++) {
-                Pair<Integer, int[]> in = in(type, i);
-                int[] out = out(type, i);
-                int[] result = SelectionSort.sort(in.getValue());
-                Assertions.assertArrayEquals(out, result);
-            }
-        }
-    }
-
-    @Test
-    public void insertionSort() throws IOException {
-        System.out.println("Insertion sort");
-        for (String type : types) {
-            System.out.println("type: " + type);
-            for (int i = 0; i < 7; i++) {
-                Pair<Integer, int[]> in = in(type, i);
-                int[] out = out(type, i);
-                int[] result = InsertionSort.sort(in.getValue());
-                Assertions.assertArrayEquals(out, result);
-            }
-        }
-    }
-
-    @Test
-    public void shellSort() throws IOException {
-        System.out.println("Shell sort");
-        for (String type : types) {
-            System.out.println("type: " + type);
-            for (int i = 0; i < 8; i++) {
-                Pair<Integer, int[]> in = in(type, i);
-                int[] out = out(type, i);
-                int[] result = ShellSort.sort(in.getValue());
-                Assertions.assertArrayEquals(out, result);
-            }
-        }
-    }
-
-    @Test
-    public void shellSort10() throws IOException {
-        System.out.println("Shell sort");
-        for (String type : types) {
-            System.out.println("type: " + type);
-            for (int i = 0; i < 8; i++) {
-                Pair<Integer, int[]> in = in(type, i);
-                int[] out = out(type, i);
-                int[] result = ShellSort.sort(in.getValue(), 10);
-                Assertions.assertArrayEquals(out, result);
-            }
-        }
-    }
-
-    @Test
-    public void heapSort() throws IOException {
-        System.out.println("Heap sort");
-        for (String type : types) {
-            System.out.println("type: " + type);
-            for (int i = 0; i < 8; i++) {
-                Pair<Integer, int[]> in = in(type, i);
-                int[] out = out(type, i);
-                int[] result = HeapSort.sort(in.getValue());
-                Assertions.assertArrayEquals(out, result);
-            }
+            System.out.println("---------------------------");
         }
     }
 
